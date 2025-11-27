@@ -1,0 +1,41 @@
+table, thead, tbody, tr, th, td{
+    border-collapse: collapse;
+    border: 1px dashed brown;
+}
+th{
+    background-color: brown;
+}
+tr td:nth-last-child(1),  tr td:nth-last-child(3){
+    background-color: bisque;
+}
+button{
+    font-weight: bold;
+}
+button:hover{
+    background-color: brown;
+}
+/*------------------------------------*/
+tbody tr:not(:has(td[rowspan]))+tr:not(:has(td[rowspan])):hover td{
+    background-color: brown;
+}
+tr:has(td[rowspan]):hover td{
+    background-color: brown;
+}
+tr:has(td[rowspan]):hover +tr td{
+    background-color: brown;
+}
+tr:has(td[rowspan])+tr:hover td{
+    background-color: brown;
+}
+tr:has(td[rowspan]):has(+tr:hover) td{
+    background-color: brown;
+}
+/*javascript ----->*/
+tr td.marked{
+    color:white;
+}
+
+div span.error{
+    color: red;
+    font-weight: bold;
+}

@@ -1,0 +1,17 @@
+/*1feladat*/
+table, tbody, tr, td{
+    border-collapse: collapse;
+    border: 1px dotted green
+}
+/*2feladat*/
+table tbody tr:nth-child(2n){
+    background-color: lightblue;
+}
+/*3feladat*/
+#dolgozat>p.error{
+    color: red;
+}
+/*4feladat*/
+#dolgozat:has(a[href="cica.html"]:hover) div{
+    background-color: red;
+}
