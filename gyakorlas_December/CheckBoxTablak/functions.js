@@ -153,6 +153,53 @@ function Check(){
     hideIfChecked(tableSelector)
     tableSelector.addEventListener('change',bePipalva)
 }
+//-------------------------------------1. commit-------------------------------------------
 //--------------------------------Form------------------------------------->
+/**
+ * 3x fordul elo, ezert kirendezem fuggvenybe
+ * @param {HTMLDivElement} parentDiv 
+ * @returns {void}
+ */
+function bR(parentDiv){
+    const br = document.createElement('br')
+    parentDiv.appendChild(br)
+}
+/**
+ * lerenderel egy formon belüli div-et ami tartalmaz egy labelt, inputot, spant, es sortoreseket kozte
+ * @param {HTMLFormElement} parentForm 
+ * @param {string} liId 
+ * @param {string} labelTxt 
+ * @returns {void}
+ */
+function generateFormDivElement(parentForm,liId,labelTxt){
+    const div = document.createElement('div')
+    parentForm.appendChild(div)
 
+    const label = document.createElement('label')
+    label.htmlFor=liId
+    label.innerText=labelTxt
+    div.appendChild(label)
+    bR(div)
+
+    const input = document.createElement('input')
+    input.type="text"
+    input.id=liId
+    input.name=liId
+    div.appendChild(input)
+    bR(div)
+
+    const span = document.createElement('span')
+    span.classList.add('error')
+    div.appendChild(span)
+    bR(div)
+}
+
+function generateForm(formId,FormArry){
+    const jsSection = document.getElementById('jsSection')
+    
+    const form = document.createElement('form')
+    form.id=formId
+    jsSection.appendChild(form)
+
+}
 //--------------------------------Event + Valid------------------------------------->
