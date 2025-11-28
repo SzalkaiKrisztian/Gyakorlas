@@ -1,6 +1,6 @@
 //----------------------------------------Table generalasa:-------------------------------->
 /** @type {TableArry[]} */
-const TableArr=[
+const tableArr=[
     {
         hely:"Athén",
         ag1:"politika",
@@ -21,8 +21,40 @@ const TableArr=[
         pl2:"hoplita"
     }
 ]
-generateFrame("jsSection","jsBody",["Ókori település","Ágazat","Példa"])
-generateTableBody(TableArr)
+generateFrame("jssection","jsbody",["Ókori település","Ágazat","Példa"])
+generateTableBody(tableArr)
 //----------------------------------------Checkbox--------------------------------------->
 Check()
 //-------------------------------------1. commit-------------------------------------------
+//----------------------------------------Form generalasa:-------------------------------->
+/**@type {FormArry[]} */
+const FormArr = [
+    {
+        forId:"elso",
+        txt:"Ókori település",
+        inpName:"hely"
+    },
+    {
+        forId:"masodik",
+        txt:"Ágazat",
+        inpName:"ag1"
+    },
+    {
+        forId:"harmadik",
+        txt:"Példa",
+        inpName:"pl1"
+    },
+    {
+        forId:"negyedik",
+        txt:"Másik Ágazat",
+        inpName:"ag2"
+    },
+    {
+        forId:"otodik",
+        txt:"Másik Példa",
+        inpName:"pl2"
+    }
+]
+const htmlForm=document.getElementById('htmlform')
+const jsForm=generateForm("jsform",FormArr)
+//-------------------------------------2. commit-------------------------------------->

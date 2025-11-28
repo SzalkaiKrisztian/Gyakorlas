@@ -1,5 +1,6 @@
 /**
  * @typedef {{hely:string,ag1:string,pl1:string,ag2?:string,pl2?:string}} TableArry
+ * @typedef {{forId:string,txt:string,inpName:string}} FormArry
  */
 //--------------------------------tABLE + Frame------------------------------------->
 /**
@@ -104,7 +105,7 @@ function generateFrame(sectionId,tableBodyId,fejLec){
  * @returns {void}
  */
 function generateTableBody(TableArrRow){
-    const tbody = document.getElementById('jsBody')
+    const tbody = document.getElementById('jsbody')
     tbody.innerHTML=''
 
     for(const obj of TableArrRow){
@@ -120,14 +121,14 @@ function generateTableBody(TableArrRow){
 function hideIfChecked(pipaBox){
     pipa = pipaBox.checked
     if(pipa){
-        const htmlSectionDiv = document.body.querySelector('#htmlSection')
+        const htmlSectionDiv = document.body.querySelector('#htmlsection')
         htmlSectionDiv.classList.add('hide')
-        const jsSectionDiv = document.body.querySelector('#jsSection')
+        const jsSectionDiv = document.body.querySelector('#jssection')
         jsSectionDiv.classList.remove('hide')
     }else{
-        const htmlSectionDiv = document.body.querySelector('#htmlSection')
+        const htmlSectionDiv = document.body.querySelector('#htmlsection')
         htmlSectionDiv.classList.remove('hide')
-        const jsSectionDiv = document.body.querySelector('#jsSection')
+        const jsSectionDiv = document.body.querySelector('#jssection')
         jsSectionDiv.classList.add('hide')
     }
 }
@@ -149,7 +150,7 @@ function bePipalva(e){
  * @returns {void}
  */
 function Check(){
-    const tableSelector = document.getElementById('tableSelector')
+    const tableSelector = document.getElementById('tableselector')
     hideIfChecked(tableSelector)
     tableSelector.addEventListener('change',bePipalva)
 }
@@ -168,10 +169,11 @@ function bR(parentDiv){
  * lerenderel egy formon belüli div-et ami tartalmaz egy labelt, inputot, spant, es sortoreseket kozte
  * @param {HTMLFormElement} parentForm 
  * @param {string} liId 
- * @param {string} labelTxt 
+ * @param {string} labelTxt
+ * @param {string} inputName  
  * @returns {void}
  */
-function generateFormDivElement(parentForm,liId,labelTxt){
+function generateFormDivElement(parentForm,liId,labelTxt,inputName){
     const div = document.createElement('div')
     parentForm.appendChild(div)
 
@@ -184,7 +186,7 @@ function generateFormDivElement(parentForm,liId,labelTxt){
     const input = document.createElement('input')
     input.type="text"
     input.id=liId
-    input.name=liId
+    input.name=inputName
     div.appendChild(input)
     bR(div)
 
@@ -193,13 +195,27 @@ function generateFormDivElement(parentForm,liId,labelTxt){
     div.appendChild(span)
     bR(div)
 }
-
+/**
+ * 
+ * @param {string} formId 
+ * @param {FormArry[]} FormArry 
+ * @returns {HTMLFormElement}
+ */
 function generateForm(formId,FormArry){
-    const jsSection = document.getElementById('jsSection')
+    const jsSection = document.getElementById('jssection')
     
     const form = document.createElement('form')
     form.id=formId
     jsSection.appendChild(form)
+    
+    for(const obj of FormArry){
+        generateFormDivElement(form,obj.forId,obj.txt,obj.inpName)
+    }
 
+    const button = document.createElement('button')
+    button.innerText="Hozzáadás"
+    form.appendChild(button)
+    return form
 }
+//-------------------------------------2. commit-------------------------------------------
 //--------------------------------Event + Valid------------------------------------->
