@@ -58,3 +58,47 @@ const FormArr = [
 const htmlForm=document.getElementById('htmlform')
 const jsForm=generateForm("jsform",FormArr)
 //-------------------------------------2. commit-------------------------------------->
+//-------------------------------------Eventlisteners--------------------------------->
+htmlForm.addEventListener("submit",addToHtmlTable)
+jsForm.addEventListener("submit",function(e){
+    e.preventDefault()
+
+    /**@type {HTMLFormElement} */
+    const target=e.target
+
+    /**@type {TableArry} */
+    const obj ={}
+
+    /**@type {HTMLInputElement} */
+    const helyInput = target.querySelector('#elso')
+    /**@type {HTMLInputElement} */
+    const ag1Input = target.querySelector('#masodik')
+    /**@type {HTMLInputElement} */
+    const pl1Input = target.querySelector('#harmadik')
+    /**@type {HTMLInputElement} */
+    const ag2Input = target.querySelector('#negyedik')
+    /**@type {HTMLInputElement} */
+    const pl2Input = target.querySelector('#otodik')
+
+    if(validate3Fields(helyInput,ag1Input,pl1Input)){
+        /**@type {string} */
+        const helyString = helyInput.value
+        /**@type {string} */
+        const ag1String = ag1Input.value
+        /**@type {string} */
+        const pl1String = pl1Input.value
+        /**@type {string} */
+        const ag2String = ag2Input.value
+        /**@type {string} */
+        const pl2String = pl2Input.value
+
+        obj.hely=helyString
+        obj.ag1=ag1String
+        obj.pl1=pl1String
+        pl2String==''? obj.pl2=undefined : obj.pl2=pl2String
+        ag2String==''? obj.ag2=undefined : obj.ag2=ag2String
+
+        tableArr.push(obj)
+        generateTableBody(tableArr)
+    }
+})

@@ -196,7 +196,7 @@ function generateFormDivElement(parentForm,liId,labelTxt,inputName){
     bR(div)
 }
 /**
- * 
+ * legeneralja a formot xd
  * @param {string} formId 
  * @param {FormArry[]} FormArry 
  * @returns {HTMLFormElement}
@@ -219,3 +219,78 @@ function generateForm(formId,FormArry){
 }
 //-------------------------------------2. commit-------------------------------------------
 //--------------------------------Event + Valid------------------------------------->
+/**
+ * megnezi van e az inputmezőben beadott text, ha nincs akkor span uzenete megjelenik, egyebkent nem
+ * @param {HTMLInputElement} inputFiled 
+ * @param {string} errorTxt 
+ * @returns {Boolean}
+ */
+function validField(inputFiled,errorTxt){
+    let van = true
+    const parentDiv = inputFiled.parentElement
+    if(inputFiled.value==''){
+        const span = parentDiv.querySelector('.error')
+        span.innerText=errorTxt
+        van=false
+    }else{
+        const span = parentDiv.querySelector('.error')
+        span.innerText=''
+    }
+    return van
+}
+/**
+ * megnezi mind3 mezo kivan e toltve
+ * @param {HTMLInputElement} hely 
+ * @param {HTMLInputElement} ag1 
+ * @param {HTMLInputElement} pl1 
+ * @returns {Boolean}
+ */
+function validate3Fields(hely,ag1,pl1){
+    let van = true
+    if(validField(hely,"Kötelező kitőlteni!") == false){van=false}
+    if(validField(ag1,"Kötelező kitőlteni!") == false){van=false}
+    if(validField(pl1,"Kötelező kitőlteni!") == false){van=false}
+    return van
+}
+/**
+ * @type {Event}
+ * @returns {void}
+ */
+function addToHtmlTable(e){
+    e.preventDefault()
+
+    /**@type {HTMLFormElement} */
+    const target=e.target
+
+    /**@type {TableArry} */
+    const obj ={}
+
+    /**@type {HTMLInputElement} */
+    const helyInput = target.querySelector('#elso')
+    /**@type {HTMLInputElement} */
+    const ag1Input = target.querySelector('#masodik')
+    /**@type {HTMLInputElement} */
+    const pl1Input = target.querySelector('#harmadik')
+    /**@type {HTMLInputElement} */
+    const pl2Input = target.querySelector('#otodik')
+
+    if(validate3Fields(helyInput,ag1Input,pl1Input)){
+        /**@type {string} */
+        const helyString = helyInput.value
+        /**@type {string} */
+        const ag1String = ag1Input.value
+        /**@type {string} */
+        const pl1String = pl1Input.value
+        /**@type {string} */
+        const pl2String = pl2Input.value
+
+        obj.hely=helyString
+        obj.ag1=ag1String
+        obj.pl1=pl1String
+        pl2String==''? obj.pl2=undefined : obj.pl2=pl2String
+        obj.ag2=undefined
+
+        const htmlBody = document.getElementById('htmlbody')
+        generateTableRowVCol('col',htmlBody,obj)
+    }
+}
