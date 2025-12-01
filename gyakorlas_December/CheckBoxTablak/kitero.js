@@ -100,5 +100,6 @@ jsForm.addEventListener("submit",function(e){
 
         tableArr.push(obj)
         generateTableBody(tableArr)
+        jsForm.reset()
     }
 })
