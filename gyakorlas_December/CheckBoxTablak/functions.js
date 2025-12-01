@@ -251,18 +251,6 @@ function validate3Fields(hely,ag1,pl1){
     return van
 }
 /**
- * megnezi mind2 mezo kivan e toltve
- * @param {HTMLInputElement} ag2 
- * @param {HTMLInputElement} pl2 
- * @returns {Boolean}
- */
-function validate2Fields(ag2,pl2){
-    let van = true
-    if(validField(ag2,"Kötelező kitőlteni!") == false){van=false}
-    if(validField(pl2,"Kötelező kitőlteni!") == false){van=false}
-    return van
-}
-/**
  * @type {Event}
  * @returns {void}
  */

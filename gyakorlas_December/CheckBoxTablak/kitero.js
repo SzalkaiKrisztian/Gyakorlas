@@ -81,6 +81,12 @@ jsForm.addEventListener("submit",function(e){
     const pl2Input = target.querySelector('#otodik')
 
     if(validate3Fields(helyInput,ag1Input,pl1Input)){
+        let seged = true
+        if(ag2Input.value){
+            if(validField(pl2Input,"kötelező ha adsz masik agazatot") == false){seged=false}
+        }else if(pl2Input.value){
+            if(validField(ag2Input,"kötelező ha adsz masik peldat") ==false){seged=false}
+        }   
         /**@type {string} */
         const helyString = helyInput.value
         /**@type {string} */
@@ -97,9 +103,10 @@ jsForm.addEventListener("submit",function(e){
         obj.pl1=pl1String
         pl2String==''? obj.pl2=undefined : obj.pl2=pl2String
         ag2String==''? obj.ag2=undefined : obj.ag2=ag2String
-
-        tableArr.push(obj)
-        generateTableBody(tableArr)
-        jsForm.reset()
+        if(seged){
+            tableArr.push(obj)
+            generateTableBody(tableArr)
+            jsForm.reset()
+        }
     }
 })

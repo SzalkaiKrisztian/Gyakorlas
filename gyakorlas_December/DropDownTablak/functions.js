@@ -65,6 +65,10 @@ function createTableRowCR(rowType, parentBody, rowObj) {
         createColSpanVariant(tdP,tr,rowObj)
     }
 }
+
+function createFrame(divOption,tbodyId){
+    
+}
 /**
  * 
  * @param {TableRow[]} tableArr 
