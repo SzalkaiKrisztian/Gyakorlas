@@ -1,0 +1,11 @@
+.hide{
+    display: none;
+}
+div span.error{
+    color: red;
+    font-weight: bold;
+}
+table, thead, tbody, tr, td,th{
+    border-collapse: collapse;
+    border: 1px black solid;
+}

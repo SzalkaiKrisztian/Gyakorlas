@@ -4,39 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ókor Tudomány</title>
-    <style>
-        table,
-        tr,
-        td,
-        th {
-            border: 1px solid black;
-            border-collapse: collapse;
-            padding: 1px;
-        }
-
-        .hide {
-            display: none;
-        }
-
-        div span.error {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+    <title>Dropdown</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <label for="tableselector"></label>
-    <input type="checkbox" id="tableselector">
-    <div id="htmlsection" class="hide">
+    <label for="tableselector">Tabla:</label>
+    <select id="tableselector">
+        <option value="" hidden>Valassz Tablat:</option>
+        <option value="htmloption"></option>
+        <option value="jsoption"></option>
+    </select>
+    <div id="htmloption" class="hide">
         <table>
             <thead>
                 <tr>
-                    <th>Ókori település</th>
+                    <th>Ókori Település</th>
                     <th>Ágazat</th>
                     <th colspan="2">Példa</th>
-                </tr>+
+                </tr>
             </thead>
             <tbody id="htmlbody">
                 <tr>
@@ -69,15 +55,10 @@
             </tbody>
         </table>
         <form id="htmlform">
-            <div><label for="elso">Ókori település</label><br><input type="text" name="hely" id="elso"><br><span
-                    class="error"></span><br></div>
-            <div><label for="masodik">Ágazat</label><br><input type="text" name="ag1" id="masodik"><br><span
-                    class="error"></span><br></div>
-            <div><label for="harmadik">Példa</label><br><input type="text" name="pl1" id="harmadik"><br><span
-                    class="error"></span><br></div>
-            <div><label for="negyedik">Másik Példa</label><br><input type="text" name="pl2" id="negyedik"><br><span
-                    class="error"></span><br></div>
-            <button>Hozzáadaás</button>
+            <div><label for="elso"></label><br><input type="text" name="hely" id="elso"><br><span class="error"></span><br></div>
+            <div><label for="masodik"></label><br><input type="text" name="ag1" id="masodik"><br><span class="error"></span><br></div>
+            <div><label for="harmadik"></label><br><input type="text" name="pl1" id="harmadik"><br><span class="error"></span><br></div>
+            <div><label for="negyedik"></label><br><input type="text" name="pl2" id="negyedik"><br><span class="error"></span><br></div>
         </form>
     </div>
 

@@ -119,16 +119,14 @@ function generateTableBody(TableArrRow){
  * @returns {void}
  */
 function hideIfChecked(pipaBox){
-    pipa = pipaBox.checked
+    const pipa = pipaBox.checked
+    const htmlSectionDiv = document.body.querySelector('#htmlsection')
+    const jsSectionDiv = document.body.querySelector('#jssection')
     if(pipa){
-        const htmlSectionDiv = document.body.querySelector('#htmlsection')
         htmlSectionDiv.classList.add('hide')
-        const jsSectionDiv = document.body.querySelector('#jssection')
         jsSectionDiv.classList.remove('hide')
     }else{
-        const htmlSectionDiv = document.body.querySelector('#htmlsection')
         htmlSectionDiv.classList.remove('hide')
-        const jsSectionDiv = document.body.querySelector('#jssection')
         jsSectionDiv.classList.add('hide')
     }
 }
@@ -284,7 +282,7 @@ function addToHtmlTable(e){
     /**@type {HTMLInputElement} */
     const pl1Input = target.querySelector('#harmadik')
     /**@type {HTMLInputElement} */
-    const pl2Input = target.querySelector('#otodik')
+    const pl2Input = target.querySelector('#negyedik')
 
     if(validate3Fields(helyInput,ag1Input,pl1Input)){
         /**@type {string} */
