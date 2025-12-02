@@ -21,9 +21,9 @@ const jsTableArr = [
         pelda2:"hoplita"
     }
 ]
-
+createFrame("jsoption","jsbody",["Ókori Település","Ágazat","Példa"],jsTableArr)
 //----------------------------------------------Check létrehozása------------------------------->
-
+OptionSelected()
 //----------------------------------------------Form létrehozása------------------------------->
 
 //----------------------------------------------EventListener létrehozása------------------------------->

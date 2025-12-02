@@ -88,7 +88,7 @@ jsForm.addEventListener("submit", function (e) {
         } else if (pl2Input.value) {// van e benne szöveg
             if (validField(ag2Input, "kötelező ha adsz masik peldat!") == false) { seged = false }
         }
-        if (seged) {//alapból true
+        if (seged) {//alapból true, ezért lefut 3 kötelező mezővel!
             /**@type {string} */
             const helyString = helyInput.value
             /**@type {string} */
