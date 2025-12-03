@@ -143,5 +143,5 @@ function SelectToggle(e){
 function OptionSelected(){
     const tableSelector = document.getElementById('tableselector')
     toggleVisible(tableSelector)
-    tableSelector.addEventListener("select",SelectToggle)
+    tableSelector.addEventListener("change",SelectToggle)
 }
