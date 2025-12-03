@@ -120,9 +120,16 @@ function createTableBody(tableArr){
 function toggleVisible(selectElement){
     const jsOption=document.getElementById('jsoption')
     const htmlOption = document.getElementById('htmloption')
-    jsOption.classList.add('hide')
-    htmlOption.classList.add('hide')
-    selectElement.classList.remove('hide')
+    if(selectElement.value == jsOption.id){
+        htmlOption.classList.add('hide')
+        jsOption.classList.remove('hide')
+    }else{
+        jsOption.classList.add('hide')
+        htmlOption.classList.remove('hide')
+    }
+    
+    
+    
 }
 /**
  * 
