@@ -118,10 +118,9 @@ function createTableBody(tableArr){
  * @returns {void}
  */
 function toggleVisible(selectElement){
-    const option=selectElement.value
     const jsOption=document.getElementById('jsoption')
-    jsOption.classList.add('hide')
     const htmlOption = document.getElementById('htmloption')
+    jsOption.classList.add('hide')
     htmlOption.classList.add('hide')
     selectElement.classList.remove('hide')
 }
