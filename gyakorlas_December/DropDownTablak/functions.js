@@ -41,8 +41,8 @@ function createRowSpanVariant(cellSpan, parentBody, rowObj) {
 function createColSpanVariant(cellSpan, parentTr, rowObj) {
     if (rowObj.pelda2) {
         createTAbleCell("td", rowObj.pelda2, parentTr)
-    }else{
-        cellSpan.rowSpan = 2
+    } else {
+        cellSpan.colSpan = 2
     }
 }
 /**
@@ -60,9 +60,9 @@ function createTableRowCR(rowType, parentBody, rowObj) {
     createTAbleCell("td", rowObj.agazat1, tr)
     const tdP = createTAbleCell("td", rowObj.pelda1, tr)
     if (rowType == "row") {
-        createRowSpanVariant(tdH,parentBody,rowObj)
-    }else{
-        createColSpanVariant(tdP,tr,rowObj)
+        createRowSpanVariant(tdH, parentBody, rowObj)
+    } else {
+        createColSpanVariant(tdP, tr, rowObj)
     }
 }
 /**
@@ -73,27 +73,27 @@ function createTableRowCR(rowType, parentBody, rowObj) {
  * @param {TableRow[]} arrO
  * @returns {void}
  */
-function createFrame(divOption,tbodyId,fejLec,arrO){
+function createFrame(divOption, tbodyId, fejLec, arrO) {
     const div = document.createElement('div')
-    div.id=divOption
+    div.id = divOption
     div.classList.add('hide')
     document.body.appendChild(div)
 
     const table = document.createElement('table')
     div.appendChild(table)
 
-    const thead= document.createElement('thead')
+    const thead = document.createElement('thead')
     table.appendChild(thead)
 
-    const tr= document.createElement('tr')
+    const tr = document.createElement('tr')
     thead.appendChild(tr)
 
-    for(const cim of fejLec){
-        createTAbleCell("th",cim,tr)
+    for (const cim of fejLec) {
+        createTAbleCell("th", cim, tr)
     }
 
-    const tbody= document.createElement('tbody')
-    tbody.id=tbodyId
+    const tbody = document.createElement('tbody')
+    tbody.id = tbodyId
     table.appendChild(tbody)
 
     createTableBody(arrO)
@@ -103,12 +103,12 @@ function createFrame(divOption,tbodyId,fejLec,arrO){
  * @param {TableRow[]} tableArr 
  * @returns {void}
  */
-function createTableBody(tableArr){
-    const tbody=document.getElementById('jsbody')
-    tbody.innerHTML=""
+function createTableBody(tableArr) {
+    const tbody = document.getElementById('jsbody')
+    tbody.innerHTML = ""
 
-    for(const obj of tableArr){
-        createTableRowCR("row",tbody,obj)
+    for (const obj of tableArr) {
+        createTableRowCR("row", tbody, obj)
     }
 }
 //--------------------------------------------------------------------------------------------------------
@@ -117,40 +117,40 @@ function createTableBody(tableArr){
  * @param {HTMLSelectElement} selectElement 
  * @returns {void}
  */
-function toggleVisible(selectElement){
-    const jsOption=document.getElementById('jsoption')
+function toggleVisible(selectElement) {
+    const jsOption = document.getElementById('jsoption')
     const htmlOption = document.getElementById('htmloption')
-    if(selectElement.value == jsOption.id){
+    if (selectElement.value == jsOption.id) {
         htmlOption.classList.add('hide')
         jsOption.classList.remove('hide')
-    }else{
+    } else {
         jsOption.classList.add('hide')
         htmlOption.classList.remove('hide')
     }
-    
-    
-    
+
+
+
 }
 /**
  * 
  * @param {Event} e 
  * @returns {void}
  */
-function SelectToggle(e){
+function SelectToggle(e) {
     e.preventDefault()
 
     /**@type {HTMLSelectElement} */
-    const target=e.target
+    const target = e.target
 
     toggleVisible(target)
 }
 /**
  * @returns {void}
  */
-function OptionSelected(){
+function OptionSelected() {
     const tableSelector = document.getElementById('tableselector')
     toggleVisible(tableSelector)
-    tableSelector.addEventListener("change",SelectToggle)
+    tableSelector.addEventListener("change", SelectToggle)
 }
 //--------------------------------------------------------------------------------------------------------
 /**
@@ -158,7 +158,7 @@ function OptionSelected(){
  * @param {HTMLDivElement} parentDiv 
  * @returns {void}
  */
-function createBr(parentDiv){
+function createBr(parentDiv) {
     const br = document.createElement('br')
     parentDiv.appendChild(br)
 }
@@ -169,19 +169,19 @@ function createBr(parentDiv){
  * @param {string} labInpId 
  * @param {string} inpName 
  */
-function createFormDiv(parentForm,labelTxt,labInpId,inpName){
+function createFormDiv(parentForm, labelTxt, labInpId, inpName) {
     const div = document.createElement('div')
     parentForm.appendChild(div)
 
-    const label=document.createElement('label')
-    label.htmlFor=labInpId
-    label.innerText=labelTxt
+    const label = document.createElement('label')
+    label.htmlFor = labInpId
+    label.innerText = labelTxt
     div.appendChild(label)
     createBr(div)
     const input = document.createElement('input')
-    input.type="text"
-    input.name=inpName
-    input.id=labInpId
+    input.type = "text"
+    input.name = inpName
+    input.id = labInpId
     div.appendChild(input)
     createBr(div)
     const span = document.createElement('span')
@@ -194,20 +194,98 @@ function createFormDiv(parentForm,labelTxt,labInpId,inpName){
  * @param {FormDivData} formArr 
  * @returns {HTMLFormElement}
  */
-function createForm(formId,formArr){
+function createForm(formId, formArr) {
     const jsOption = document.getElementById('jsoption')
-    
+
     const form = document.createElement('form')
-    form.id=formId
+    form.id = formId
     jsOption.appendChild(form)
 
-    for(const obj of formArr){
-        createFormDiv(form,obj.txt,obj.lIId,obj.iName)
+    for (const obj of formArr) {
+        createFormDiv(form, obj.txt, obj.lIId, obj.iName)
     }
 
     const button = document.createElement('button')
-    button.innerText="Hozzáadás"
+    button.innerText = "Hozzáadás"
     form.appendChild(button)
 
     return form
+}
+//--------------------------------------------------------------------------------------------------------
+/**
+ * 
+ * @param {HTMLInputElement} inputElem 
+ * @param {string} errorTXt 
+ * @returns {Boolean}
+ */
+function validField(inputElem, errorTXt) {
+    let van = true
+    const div = inputElem.parentElement
+    const span = div.querySelector('.error')
+    if (inputElem.value == "") {
+        span.innerText = errorTXt
+        van = false
+    } else {
+
+        span.innerText = ''
+    }
+    return van
+}
+/**
+ * 
+ * @param {HTMLInputElement} hely 
+ * @param {HTMLInputElement} ag 
+ * @param {HTMLInputElement} pl 
+ * @returns {boolean}
+ */
+function validateFields(hely, ag, pl) {
+    let van = true
+    if (validField(hely, "kötelező kitölteni!") == false) { van = false }
+    if (validField(ag, "kötelező kitölteni!") == false) { van = false }
+    if (validField(pl, "kötelező kitölteni!") == false) { van = false }
+    return van
+}
+/**
+ * 
+ * @param {Event} e 
+ * @returns {void}
+ */
+function addToHtmlTable(e) {
+    e.preventDefault()
+
+    /**@type {HTMLFormElement} */
+    const target = e.target
+
+    /**@type {TableRow} */
+    const obj = {}
+
+    /**@type {HTMLInputElement} */
+    const helyInput = target.querySelector('#elso')
+    /**@type {HTMLInputElement} */
+    const ag1Input = target.querySelector('#masodik')
+    /**@type {HTMLInputElement} */
+    const pl1Input = target.querySelector('#harmadik')
+    /**@type {HTMLInputElement} */
+    const pl2Input = target.querySelector('#negyedik')
+
+    if (validateFields(helyInput, ag1Input, pl1Input)) {
+        /**@type {string} */
+        const helyString = helyInput.value
+        /**@type {string} */
+        const ag1String = ag1Input.value
+        /**@type {string} */
+        const pl1String = pl1Input.value
+        /**@type {string} */
+        const pl2String = pl2Input.value
+
+        obj.hely = helyString
+        obj.agazat1 = ag1String
+        obj.pelda1 = pl1String
+        pl2String == "" ? obj.pelda2 = undefined : obj.pelda2 = pl2String
+        obj.agazat2=undefined
+
+        const htmlBody = document.getElementById('htmlbody')
+        createTableRowCR("col", htmlBody, obj)
+        jsForm.reset()
+    }
 }

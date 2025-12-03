@@ -251,7 +251,7 @@ function validate3Fields(hely,ag1,pl1){
     return van
 }
 /**
- * @type {Event}
+ * @param {Event} e
  * @returns {void}
  */
 function addToHtmlTable(e){
