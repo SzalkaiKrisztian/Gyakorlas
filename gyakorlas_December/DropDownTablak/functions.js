@@ -1,6 +1,6 @@
 /**
  * @typedef {{hely:string,agazat1:string,pelda1:string,agazat2?:string,pelda2?:string}} TableRow
- * 
+ * @typedef {{txt:string,lIId:string,iName:string}} FormDivData
  */
 /**
  * 
@@ -151,4 +151,63 @@ function OptionSelected(){
     const tableSelector = document.getElementById('tableselector')
     toggleVisible(tableSelector)
     tableSelector.addEventListener("change",SelectToggle)
+}
+//--------------------------------------------------------------------------------------------------------
+/**
+ * 
+ * @param {HTMLDivElement} parentDiv 
+ * @returns {void}
+ */
+function createBr(parentDiv){
+    const br = document.createElement('br')
+    parentDiv.appendChild(br)
+}
+/**
+ * 
+ * @param {HTMLFormElement} parentForm 
+ * @param {string} labelTxt 
+ * @param {string} labInpId 
+ * @param {string} inpName 
+ */
+function createFormDiv(parentForm,labelTxt,labInpId,inpName){
+    const div = document.createElement('div')
+    parentForm.appendChild(div)
+
+    const label=document.createElement('label')
+    label.htmlFor=labInpId
+    label.innerText=labelTxt
+    div.appendChild(label)
+    createBr(div)
+    const input = document.createElement('input')
+    input.type="text"
+    input.name=inpName
+    input.id=labInpId
+    div.appendChild(input)
+    createBr(div)
+    const span = document.createElement('span')
+    span.classList.add('error')
+    div.appendChild(span)
+    createBr(div)
+}
+/**
+ * @param {string} formId
+ * @param {FormDivData} formArr 
+ * @returns {HTMLFormElement}
+ */
+function createForm(formId,formArr){
+    const jsOption = document.getElementById('jsoption')
+    
+    const form = document.createElement('form')
+    form.id=formId
+    jsOption.appendChild(form)
+
+    for(const obj of formArr){
+        createFormDiv(form,obj.txt,obj.lIId,obj.iName)
+    }
+
+    const button = document.createElement('button')
+    button.innerText="Hozzáadás"
+    form.appendChild(button)
+
+    return form
 }
