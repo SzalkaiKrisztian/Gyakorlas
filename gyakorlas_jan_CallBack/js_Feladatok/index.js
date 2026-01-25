@@ -66,6 +66,4 @@ const colspanBodyArr = [
     }
 ]
 
-renderColspanBody(makeTableBodyWithHeader(colspanHeaderArr), colspanBodyArr)
 renderRowspanBody(makeTableBodyWithHeader(rowspanHeaderArr), rowspanBodyArr)
-
