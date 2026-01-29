@@ -23,7 +23,7 @@ SponsoredPost.prototype.display = function () {
 //3.feladat
 class Logger {
     #history
-    constructor(history) {
+    constructor() {
         this.#history = []
     }
     get history() {
