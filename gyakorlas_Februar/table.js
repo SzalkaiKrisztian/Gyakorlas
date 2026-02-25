@@ -1,9 +1,10 @@
 import { Manager } from "./manager.js";
-import { createTable } from "./functions.js";
+import { createTable} from "./functions.js";
 /**
  * @import {HeaderArrayType} from './functions.js'
  * @callback Tablecallback
- * @param {import("./functions.js").ColspanType | import("./functions.js").RowspanType}
+ * @param {HTMLTableSectionElement} tbody
+ * @param {import("./functions.js").ColspanType | import("./functions.js").RowspanType} type
  * @returns {void}
  */
 
@@ -14,7 +15,7 @@ class Table{
     #manager;
     /**
      * 
-     * @param {HeaderArrayType} headerArry
+     * @param {HeaderArrayType[]} headerArry
      * @param {Manager} manager 
      */
     constructor(headerArry,manager){
