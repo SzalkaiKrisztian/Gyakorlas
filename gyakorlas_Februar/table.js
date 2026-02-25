@@ -20,7 +20,7 @@ class Table{
      */
     constructor(headerArry,manager){
         this.#manager=manager
-        this.#tbody=createTable(document.body,function(row){
+        this.#tbody=createTable(document.body,(row)=>{
             for(const cim of headerArry){
                 const th= document.createElement('th')
                 th.innerText=cim.name

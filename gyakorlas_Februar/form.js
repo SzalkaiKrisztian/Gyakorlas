@@ -17,14 +17,40 @@ class FormController{
     constructor(FormFieldList,manager){
         this.#manager=manager
         this.FormFieldList=[]
-        this.#form=createForm(function(e){
+        this.#form=createForm((e)=>{
             for(const f of FormFieldList){
                 const fElem= new FormField(f.id,f.name,f.label,f.required,this.e)
-                
+                this.#FormFieldElemList.push(fElem)
             }
-        },function(e){
-
+        },(e)=>{
+            e.preventDefault()
+            const elem = this.#createElement()
+            if(elem){
+                this.#manager.addElement(elem)
+                /**@type {HTMLFormElement} */
+                const target = e.target
+                target.reset()
+            }
         });
+    }
+    /**
+     * @returns {import("./functions").ColspanType | import("./functions").RowspanType}
+     */
+    #createElement(){
+        let result={}
+        let valid = true
+        for(const inputField of this.#FormFieldElemList){
+            if(inputField.validate()){
+                result[inputField.name] =inputField.name
+            }else{
+                valid=false
+            }
+        }
+        if(valid){
+            return result;
+        }else{
+            return null
+        }
     }
 }
 
@@ -54,7 +80,9 @@ class FormField{
     constructor(id,name,labelcontent,required,parent){
         this.#name=name;
         this.#required=required;
-        (this.#errorElement,this.#input)=createInputField(id,name,labelcontent,parent)
+        const {errorElement, input} =createInputField(id,name,labelcontent,parent)
+        this.#errorElement=errorElement
+        this.#input=input
     }
     /**@returns {boolean} */
     validate(){

@@ -2,7 +2,7 @@
  * @import {ColspanType,RowspanType} from './functions.js'
  * 
  * @callback addCallBack
- * @param {ColspanType | RowspanType}
+ * @param {ColspanType | RowspanType} type
  * @returns {void}
  */
 
