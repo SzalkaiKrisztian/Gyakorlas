@@ -19,7 +19,7 @@ class FormController{
         this.FormFieldList=[]
         this.#form=createForm((e)=>{
             for(const f of FormFieldList){
-                const fElem= new FormField(f.id,f.name,f.label,f.required,this.e)
+                const fElem= new FormField(f.id,f.name,f.label,f.required,this.#form)
                 this.#FormFieldElemList.push(fElem)
             }
         },(e)=>{

@@ -1,14 +1,24 @@
 
-import { Manager } from "./manager";
-import { Table } from "./table";
+import { Manager } from "./manager.js";
+import { Table } from "./table.js";
 import data from "./data.json" with{type:"json"}
-import { tbodyRenderColspan } from "./functions";
+import { tbodyRenderColspan, tbodyRenderRowspan } from "./functions.js";
 import {FormController} from "./form.js"
-
-const manager = new Manager()
-const colTable = new Table(data.colspanHeaderArray,manager)
+//---------------------------------------------Col
+const colManager = new Manager()
+const colTable = new Table(data.colspanHeaderArray,colManager)
 colTable.setAppendRow(tbodyRenderColspan)
 for(const dat of data.colspanDataArr){
-    manager.addElement(data)
+    colManager.addElement(dat)
 }
-FormController(data.colspanFormFieldList)
+const cForm= new FormController(data.colspanFormFieldList,colManager)
+console.log(cForm)
+//---------------------------------------------Row
+const rowManager = new Manager()
+const rowTable = new Table(data.rowspanHeaderArray,rowManager)
+rowTable.setAppendRow(tbodyRenderRowspan)
+for(const dat of data.rowspanTableArray){
+    rowManager.addElement(dat)
+}
+const rForm =new FormController(data.rowspanFormFieldList,rowManager)
+console.log(rForm)

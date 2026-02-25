@@ -19,12 +19,13 @@ class Manager{
         this.#dataArry=[]
     }
     /**
-     * @param {colRowType | RowspanType} colRowType 
+     * 
+     * @param {ColspanType | RowspanType} colRowType 
      * @returns {void}
      */
     addElement(colRowType){
         this.#dataArry.push(colRowType)
-        if(this.#addCallback){this.addCallBack(colRowType)}
+        if(this.#addCallback){this.#addCallback(colRowType)}
     }
 }
 export {Manager}
