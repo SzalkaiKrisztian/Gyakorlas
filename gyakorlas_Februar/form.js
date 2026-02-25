@@ -16,10 +16,11 @@ class FormController{
      */
     constructor(FormFieldList,manager){
         this.#manager=manager
-        this.FormFieldList=[]
+        this.#FormFieldElemList=[]
         this.#form=createForm((e)=>{
+            document.body.appendChild(e)
             for(const f of FormFieldList){
-                const fElem= new FormField(f.id,f.name,f.label,f.required,this.#form)
+                const fElem= new FormField(f.id,f.name,f.label,f.required,e)
                 this.#FormFieldElemList.push(fElem)
             }
         },(e)=>{
@@ -41,7 +42,7 @@ class FormController{
         let valid = true
         for(const inputField of this.#FormFieldElemList){
             if(inputField.validate()){
-                result[inputField.name] =inputField.name
+                result[inputField.name] =inputField.value
             }else{
                 valid=false
             }
@@ -73,14 +74,14 @@ class FormField{
      * 
      * @param {string} id 
      * @param {string} name 
-     * @param {string} labelcontent 
+     * @param {string} labelContent 
      * @param {boolean} required 
      * @param {HTMLFormElement} parent 
      */
-    constructor(id,name,labelcontent,required,parent){
+    constructor(id,name,labelContent,required,parent){
         this.#name=name;
         this.#required=required;
-        const {errorElement, input} =createInputField(id,name,labelcontent,parent)
+        const {errorElement, input} =createInputField({id,name,labelContent,parent})
         this.#errorElement=errorElement
         this.#input=input
     }
